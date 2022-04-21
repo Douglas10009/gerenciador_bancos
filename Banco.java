@@ -2,8 +2,8 @@ import java.util.Scanner;
 public class Banco {
    public static void main(String[] args) {
 
-     int [] clientes = new int [];
-     float [] contas = new float[];
+     int [] clientes = new int []; //Tem que ter a quantidade para ser inicializada
+     float [] contas = new float[]; //Aq tb
      float  saldo; // criar dentro do case
      float deposito;// criar dentro do case
      //Possuir um menu e submenus utilizando switch case;
