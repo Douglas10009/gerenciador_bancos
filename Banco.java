@@ -11,8 +11,6 @@ public class Banco {
     float esseSaldo = 0; // Saldo da conta
     float n_conta_transferida = 0; // Número da conta a ser transferida
 
-    // String [] nome = new String[10]; // Nome do cliente
-
     float saque, deposito, transferencia;
     int essaConta = 0;
     float[] saldo = new float[10];
@@ -37,13 +35,8 @@ public class Banco {
           conta[0] = 1;
           essaConta = conta[0]; // Define uma variável para a conta que será criada
           esseSaldo = saldo[0]; // Define uma variável para o saldo da conta que será criada
-          // System.out.print("Digite seu nome: ");
-          // nome = sc.next();
-          // sc.next(); //Para debug, pois fica um "enter" no final da variável nome
 
-          System.out
-              .println("Seja bem vindo, seu número da conta é: " + conta[0] + "! Seu saldo é de R$" + esseSaldo + "\n");
-          // saldo = 0;
+          System.out.println("Seja bem vindo, seu número da conta é: " + conta[0] + "! Seu saldo é de R$" + esseSaldo + "\n");
           ContaCriada = true;
           break;
       }
@@ -51,7 +44,7 @@ public class Banco {
 
     if (ContaCriada == true) {
 
-      System.out.println("\n Obrigado por realizar seu cadastro! :)");
+      System.out.println("\n-----> Obrigado por realizar seu cadastro! :)");
 
       // Inicia o menu
       while (menu != 6) { // 6 é o número que coloquei para ser o fim do programa
@@ -77,17 +70,18 @@ public class Banco {
             // Verificar se tem saldo para sacar
             System.out.print("Digite o valor do saque: R$");
             saque = sc.nextFloat();
-            if (saque > esseSaldo) {
-              System.out.println("\nSaldo insuficiente!\n");
-            } else {
-              esseSaldo = -saque; // Retira o valor do saldo
-              System.out.println("Saque realizado com sucesso! Seu saldo atual é de R$" + esseSaldo);
-            }
 
+            if (saque > esseSaldo) {
+              System.out.println("\n-----> Saldo insuficiente!\n"); //Aviso de saldo insuficiente
+
+            } else {
+              esseSaldo -= saque; // Retira o valor do saldo
+              System.out.println("\n-----> Saque realizado com sucesso! Seu saldo atual é de R$" + esseSaldo); //Aviso de saque realizado com sucesso
+            }
             break;
 
           case 2: // Mostra o saldo
-            System.out.println("Seu saldo é de: R$" + esseSaldo);
+            System.out.println("\n-----> Seu saldo é de: R$" + esseSaldo);
             break;
 
           case 3:// Depositar
@@ -95,8 +89,8 @@ public class Banco {
             System.out.print("Digite o valor do depósito: R$");
             deposito = sc.nextFloat();
 
-            esseSaldo = +deposito; // Adiciona o valor ao saldo
-            System.out.println("Depósito realizado com sucesso! Seu saldo atual é de R$" + esseSaldo);
+            esseSaldo += deposito; // Adiciona o valor ao saldo
+            System.out.println("\n-----> Depósito realizado com sucesso! Seu saldo atual é de R$" + esseSaldo); //Aviso de depósito realizado
             break;
 
           case 4:// Transferência
@@ -105,56 +99,37 @@ public class Banco {
             transferencia = sc.nextFloat();
 
             if (transferencia > esseSaldo) {
-              System.out.println("\nSaldo insuficiente!\n");
+              System.out.println("\n-----> Saldo insuficiente!\n"); //Aviso de saldo insuficiente
+
             } else {
               System.out.print("Transferir para qual conta? ");
               contaTransferida = sc.nextInt();
 
               if (contaTransferida == essaConta) {
-                System.out.println("Você não pode transferir para a mesma conta!");
-
-              }
-              if (contains(conta, contaTransferida)) {
-                esseSaldo = -transferencia; // Retira o valor do saldo da conta que será transferida
-                n_conta_transferida = conta[contaTransferida];
-                n_conta_transferida = +transferencia; // Adiciona o valor ao saldo da conta que receberá a transferência
-                System.out.println("Transferência realizada com sucesso! Seu saldo atual é de R$" + esseSaldo);
+                System.out.println("\n-----> Você não pode transferir para a mesma conta!"); //Aviso de transferência para a mesma conta
 
               } else {
-                System.out.println("Conta não encontrada!");
+                if (contains(conta, contaTransferida)) {
+                  esseSaldo -= transferencia; // Retira o valor do saldo da conta que será transferida
+                  n_conta_transferida = conta[contaTransferida];
+                  n_conta_transferida += transferencia; // Adiciona o valor ao saldo da conta que receberá a transferência
+                  System.out.println("\n-----> Transferência realizada com sucesso! Seu saldo atual é de R$" + esseSaldo); //Aviso de transferência realizada
+
+                } else {
+                  System.out.println("\n-----> Conta não encontrada!"); //Aviso de conta não encontrada
+                }
               }
             }
-
-            // }else {
-            // saldo[i] =- transferencia; // Retira o valor do saldo
-            // saldo[j] =+ transferencia; // Adiciona o valor ao saldo
-            // System.out.println("Transferência realizada com sucesso! Seu saldo atual é de
-            // R$" + saldo);
-
-            // }
-
-            // }
             break;
 
-          case 5: // Cadastra um novo usuário
-            // ATENÇÃO: Temos um problema aqui, como que vamos identificar os clientes?
-            // temos que usar vetores ou matrizes para organizar os clientes, então poderia
-            // ser por números..
-            // Então, tem que implementar isso, e deve ficar dividido: Olá cliente número:
-            // NÚUMERO_CLIENTE, seja bem vindo NOME
-
-            // System.out.print("Digite seu nome: ");
-            // nome = sc.next();
-            // sc.next(); // Para debug, pois fica um "enter" no final da variável nome
-
-            // Preciso de uma variável que defina
+          case 5:
             i++;
             j++;
 
             conta[i] = j;
             essaConta = conta[i]; // Define uma variável para a conta que será criada
 
-            System.out.println("Seja bem vindo, o número de sua conta é: " + essaConta + ", e seu saldo é de R$ 0,00");
+            System.out.println("---- Seja bem vindo, o número de sua conta é: " + essaConta + ", e seu saldo é de R$ 0,00 ----");
             saldo[i] = 0;
             esseSaldo = saldo[i]; // Define uma variável para o saldo da conta que será criada
             ContaCriada = true;
@@ -164,10 +139,10 @@ public class Banco {
         System.out.println(" ");
       }
 
-      System.out.println("Obrigado por utilizar o Banco Trilegal!");
+      System.out.println("-----> Obrigado por utilizar o Banco Trilegal!"); //Aviso de saída do programa
 
     } else {
-      System.out.println("Ocorreu um erro ao criar sua conta!");
+      System.out.println("\n-----> Ocorreu um erro ao criar sua conta!"); //Aviso de erro ao criar conta
 
     }
 
