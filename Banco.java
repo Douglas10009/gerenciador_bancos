@@ -8,6 +8,7 @@ public class Banco {
     // float[] contas = new float[]; // Aq tb
 
     boolean ContaCriada = false; // Verifica se a conta foi devidamente criada
+    int [] conta = new int[2]; // Cria um vetor de 2 posições com os clientes e as contas
     float saque, deposito, transferencia; // criar dentro do case
     float saldo = 0;
     int menu = 0; // Contador para verificar qual ação a ser realizada
@@ -64,6 +65,8 @@ public class Banco {
 
         switch (menu) {
           case 1: // Sacar
+
+            //Verificar se tem saldo para sacar
             System.out.print("Digite o valor do saque: R$");
             saque = sc.nextFloat();
             saldo = -saque; // Retira o valor do saldo
