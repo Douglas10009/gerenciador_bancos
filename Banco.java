@@ -4,18 +4,18 @@ public class Banco {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    //int[] clientes = new int[]; // Tem que ter a quantidade para ser inicializada
-    //float[] contas = new float[]; // Aq tb
+    // int[] clientes = new int[]; // Tem que ter a quantidade para ser inicializada
+    // float[] contas = new float[]; // Aq tb
 
-    boolean ContaCriada = false; //Verifica se a conta foi devidamente criada
+    boolean ContaCriada = false; // Verifica se a conta foi devidamente criada
     float saque, deposito, transferencia; // criar dentro do case
     float saldo = 0;
-    int menu = 0; //Contador para verificar qual ação a ser realizada
-    String nome = ""; //Nome do cliente
-    String contaTransferida = ""; //Conta que será transferida
+    int menu = 0; // Contador para verificar qual ação a ser realizada
+    String nome = ""; // Nome do cliente
+    String contaTransferida = ""; // Conta que será transferida
 
-    //Pede a criação de conta no banco Trilegal
-    while (ContaCriada != true || menu != 2) {
+    // Pede a criação de conta no banco Trilegal
+    while (ContaCriada != true && menu != 2) {
       System.out.println("---------- Banco Trilegal ----------");
       System.out.println("Seja bem vindo ao Banco Trilegal! \n");
 
@@ -31,90 +31,101 @@ public class Banco {
         case 1:
           System.out.print("Digite seu nome: ");
           nome = sc.next();
-          //sc.next(); //Para debug, pois fica um "enter" no final da variável nome
+          // sc.next(); //Para debug, pois fica um "enter" no final da variável nome
 
-          System.out.println("Seja bem vindo, " + nome + "! Seu saldo é de R$ 0,00"); 
+          System.out.println("Seja bem vindo, " + nome + "! Seu saldo é de R$ 0,00 \n");
           saldo = 0;
           ContaCriada = true;
           break;
       }
     }
 
-    System.out.println(" Obrigado por realizar seu cadastro! :)");
+    if (ContaCriada == true) {
 
-    //Inicia o menu
-    while (menu != 6) { //6 é o número que coloquei para ser o fim do programa
-      System.out.println("\n---------- Banco Trilegal ----------");
-      System.out.println("Seja bem vindo, " + nome + ",  ao Banco Trilegal! \n");
+      System.out.println("\n Obrigado por realizar seu cadastro! :)");
 
-      System.out.println("Para realizar uma ação, digite uma das opções abaixo:");
-      System.out.println("1 - Sacar");
-      System.out.println("2 - Saldo");
-      System.out.println("3 - Depositar");
-      System.out.println("4 - Transferência");
-      System.out.println("5 - Cadastrar um novo usuário");
-      System.out.println("6 - Sair");
+      // Inicia o menu
+      while (menu != 6) { // 6 é o número que coloquei para ser o fim do programa
+        System.out.println("\n---------- Banco Trilegal ----------");
+        System.out.println("Seja bem vindo, " + nome + ",  ao Banco Trilegal! \n");
 
-      System.out.print("Digite o número da opção desejada: ");
-      menu = sc.nextInt();
+        System.out.println("Para realizar uma ação, digite uma das opções abaixo:");
+        System.out.println("1 - Sacar");
+        System.out.println("2 - Saldo");
+        System.out.println("3 - Depositar");
+        System.out.println("4 - Transferência");
+        System.out.println("5 - Cadastrar um novo usuário");
+        System.out.println("6 - Sair");
 
-      System.out.println(" ");
+        System.out.print("Digite o número da opção desejada: ");
+        menu = sc.nextInt();
 
-      switch (menu) {
-        case 1: //Sacar
-          System.out.print("Digite o valor do saque: R$");
-          saque = sc.nextFloat();
-          saldo =- saque; //Retira o valor do saldo
+        System.out.println(" ");
 
-          System.out.println("Saque realizado com sucesso! Seu saldo atual é de R$" + saldo);
-          break;
+        switch (menu) {
+          case 1: // Sacar
+            System.out.print("Digite o valor do saque: R$");
+            saque = sc.nextFloat();
+            saldo = -saque; // Retira o valor do saldo
 
-        case 2: //Mostra o saldo
-          System.out.println("Seu saldo é de: R$" + saldo);
-          break;
+            System.out.println("Saque realizado com sucesso! Seu saldo atual é de R$" + saldo);
+            break;
 
-        case 3://Depositar
-          // Do depósito
-          System.out.print("Digite o valor do depósito: R$");
-          deposito = sc.nextFloat();
+          case 2: // Mostra o saldo
+            System.out.println("Seu saldo é de: R$" + saldo);
+            break;
 
-          saldo =+ deposito; //Adiciona o valor ao saldo
-          System.out.println("Depósito realizado com sucesso! Seu saldo atual é de R$" + saldo);
-          break;
+          case 3:// Depositar
+            // Do depósito
+            System.out.print("Digite o valor do depósito: R$");
+            deposito = sc.nextFloat();
 
-        case 4://Transferência
-          // E da transferencia
-          System.out.print("Digite o valor da transferência: R$");
-          transferencia = sc.nextFloat();
+            saldo = +deposito; // Adiciona o valor ao saldo
+            System.out.println("Depósito realizado com sucesso! Seu saldo atual é de R$" + saldo);
+            break;
 
-          System.out.println("Transferir para qual conta?");
-          contaTransferida = sc.next();
+          case 4:// Transferência
+            // E da transferencia
+            System.out.print("Digite o valor da transferência: R$");
+            transferencia = sc.nextFloat();
 
-          sc.next(); //Para debug, pois fica um "enter" no final 
+            System.out.println("Transferir para qual conta?");
+            contaTransferida = sc.next();
 
-          saldo =- transferencia; //Retira o valor do saldo
-          System.out.println("Transferência realizada com sucesso! Seu saldo atual é de R$" + saldo);
-          break;
+            sc.next(); // Para debug, pois fica um "enter" no final
 
-        case 5: //Cadastra um novo usuário
-          //ATENÇÃO: Temos um problema aqui, como que vamos identificar os clientes? temos que usar vetores ou matrizes para organizar os clientes, então poderia ser por números..
-          //Então, tem que implementar isso, e deve ficar dividido: Olá cliente número: NÚUMERO_CLIENTE, seja bem vindo NOME
-          System.out.print("Digite seu nome: ");
-          nome = sc.next();
-          sc.next(); //Para debug, pois fica um "enter" no final da variável nome
+            saldo = -transferencia; // Retira o valor do saldo
+            System.out.println("Transferência realizada com sucesso! Seu saldo atual é de R$" + saldo);
+            break;
 
-          System.out.println("Seja bem vindo, " + nome + "! Seu saldo é de R$ 0,00"); 
-          saldo = 0;
-          ContaCriada = true;
-          break;
+          case 5: // Cadastra um novo usuário
+            // ATENÇÃO: Temos um problema aqui, como que vamos identificar os clientes?
+            // temos que usar vetores ou matrizes para organizar os clientes, então poderia
+            // ser por números..
+            // Então, tem que implementar isso, e deve ficar dividido: Olá cliente número:
+            // NÚUMERO_CLIENTE, seja bem vindo NOME
+            System.out.print("Digite seu nome: ");
+            nome = sc.next();
+            sc.next(); // Para debug, pois fica um "enter" no final da variável nome
+
+            System.out.println("Seja bem vindo, " + nome + "! Seu saldo é de R$ 0,00");
+            saldo = 0;
+            ContaCriada = true;
+            break;
+        }
+
+        System.out.println(" ");
       }
 
-      System.out.println(" ");
+      
+      System.out.println("Obrigado por utilizar o Banco Trilegal!");
+      
+    } else {
+      System.out.println("Ocorreu um erro ao criar sua conta!");
+
     }
 
-    sc.close();
-    System.out.println("Obrigado por utilizar o Banco Trilegal!");
-
+  sc.close();
   }
 }
 
