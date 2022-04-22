@@ -4,15 +4,13 @@ public class Banco {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    // int[] clientes = new int[]; // Tem que ter a quantidade para ser inicializada
-    // float[] contas = new float[]; // Aq tb
-
     boolean ContaCriada = false; // Verifica se a conta foi devidamente criada
-    int [] conta = new int[2]; // Cria um vetor de 2 posições com os clientes e as contas
-    float saque, deposito, transferencia; // criar dentro do case
-    float saldo = 0;
+    int [] conta = new int[10]; // Cria um vetor de 10 posições com o número das contas
+    String [] nome = new String[10]; // Nome do cliente
+
+    float saque, deposito, transferencia;
+    float [] saldo = new float[10];
     int menu = 0; // Contador para verificar qual ação a ser realizada
-    String nome = ""; // Nome do cliente
     String contaTransferida = ""; // Conta que será transferida
 
     // Pede a criação de conta no banco Trilegal
