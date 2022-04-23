@@ -218,13 +218,3 @@ public class Banco {
     return found;
   }
 }
-
-// Possuir um menu e submenus utilizando switch case; 🆗
-// O programa só poderá encerrar após o usuário informar; 🆗
-// Utilizar vetores ou matrizes para registrar as informações. Não pode usar
-// ArrayList ou outras classes de objetos Java; 🆗
-// Utilizar estruturas de controle e repetição para realizar operações do banco;
-// 🆗
-// O usuário cliente deverá poder: sacar, depositar, transferir de uma conta
-// para outra conta de outro cliente já cadastrado. 🆗
-// O sistema deve visualizar o saldo de cada cliente cadastrado. 🆗
