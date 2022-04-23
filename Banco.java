@@ -100,6 +100,10 @@ public class Banco {
 
           case 2: // Mostra o saldo
             System.out.println("\n-----> Seu saldo é de: R$" + esseSaldo);
+
+            // for (int k = 0; k < saldo.length; k++) { //debug
+            //   System.out.println("O saldo da conta " + conta[k] + " é de R$" + saldo[k]);
+            // }
             break;
 
           case 3:// Depositar
@@ -108,7 +112,11 @@ public class Banco {
             deposito = sc.nextFloat();
 
             esseSaldo += deposito; // Adiciona o valor ao saldo
-            saldo[i] = esseSaldo; // Atualiza o saldo da conta
+
+            int ContaDesseSaldo = essaConta - 1;
+            saldo[ContaDesseSaldo] = esseSaldo; // Atualiza o saldo da conta
+
+            //System.out.println("Conta Desse Saldo - " + ContaDesseSaldo); //degub
       
             System.out.println("\n-----> Depósito realizado com sucesso! Seu saldo atual é de R$" + esseSaldo); // Aviso
                                                                                                                 // de
@@ -181,7 +189,7 @@ public class Banco {
 
               if (contains(conta, trocarConta)) { // Verifica se a conta existe
                 essaConta = conta[trocarConta]; //Define a variavel essaConta com a conta que será acessada
-                saldo[trocarConta] = esseSaldo; // Define uma variável esseSaldo para o saldo da conta que será acessada
+                esseSaldo = saldo[trocarConta]; // Define uma variável esseSaldo para o saldo da conta que será acessada
                 System.out.println("\n-----> Conta número " + essaConta + " selecionada com sucesso!"); // Aviso de conta selecionada com sucesso
 
               } else {
