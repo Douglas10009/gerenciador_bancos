@@ -4,19 +4,29 @@ public class Banco {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    boolean ContaCriada = false; // Verifica se a conta foi devidamente criada
-    int[] conta = new int[10]; // Cria um vetor de 10 posições com o número das contas
-    int i = 0; // Contador para o vetor
-    int j = 1; // Contador para o vetor
-    float esseSaldo = 0; // Saldo da conta
-    float qnt_conta_recebeu_transferencia = 0; // Número da conta a ser transferida
-    int trocarConta = 0; // Contador para o vetor
+    //OBSERVAÇÃO!!!
+    //O número da conta mostrado para o cliente, e o index
+    //Para organização no backend, são diferentes
+    //Se na tela do usuário estiver escrito ("Seja bem vindo conta número 1")
+    //Logo a sua posição no vetor conta, é 0
+    //Ou seja, o index do vetor conta, sempre vai ser menos 1, no
+    //número que está sendo mostrado na tela
+    //O número mostrado na tela tem o valor da variável j
+    //E o index da variável conta tem o valor da variável i
 
+    //Sandbox de variáveis
+    boolean ContaCriada = false; // Verifica se a conta foi devidamente criada
+    int[] conta = new int[10]; // Cria um vetor de 10 posições com o número das contas ,começando a partir do zero
+    int i = 0; // Contador para o vetor, assume o lugar de conta
+    int j = 1; // Contador para o vetor, assume o luga de conta, a posição mostrada para o usuário
+    int essaConta = 0; //Define uma variável para a conta que está sendo acessada
+    float esseSaldo = 0; // Define uma variável para o saldo da conta que está sendo acessada
+    int trocarConta = 0; // Contador para o vetor
     float saque, deposito, transferencia;
-    int essaConta = 0;
-    float[] saldo = new float[10];
+    float[] saldo = new float[10]; //Vetor com os dados de saldo de cada cliente, o indice define qual cliente é o dono da conta
     int menu = 0; // Contador para verificar qual ação a ser realizada
     int contaTransferida = 0; // Conta que será transferida
+    //Final da sandbox de variáveis
 
     // Pede a criação de conta no banco Trilegal
     while (ContaCriada != true && menu != 2) {
@@ -38,9 +48,8 @@ public class Banco {
           esseSaldo = saldo[0]; // Define uma variável para o saldo da conta que será criada
 
           System.out
-              .println("Seja bem vindo, seu número da conta é: " + conta[0] + "! Seu saldo é de R$" + esseSaldo + "\n");
+              .println("Seja bem vindo, seu número da conta é: " + essaConta + "! Seu saldo é de R$" + esseSaldo + "\n");
           ContaCriada = true;
-
           break;
       }
     }
@@ -99,6 +108,8 @@ public class Banco {
             deposito = sc.nextFloat();
 
             esseSaldo += deposito; // Adiciona o valor ao saldo
+            saldo[i] = esseSaldo; // Atualiza o saldo da conta
+      
             System.out.println("\n-----> Depósito realizado com sucesso! Seu saldo atual é de R$" + esseSaldo); // Aviso
                                                                                                                 // de
                                                                                                                 // depósito
@@ -122,9 +133,9 @@ public class Banco {
 
               } else {
                 if (contains(conta, contaTransferida)) {
-                  esseSaldo -= transferencia; // Retira o valor do saldo da conta que será transferida
+                  esseSaldo -= transferencia; // Retira o valor do saldo da conta que vai transferir o dinheiro
+                  saldo[i] = esseSaldo; // Atualiza o saldo da conta
 
-                  qnt_conta_recebeu_transferencia = transferencia; // Adiciona o valor ao saldo da conta que receberá a transferência
                   contaTransferida --; // Decrementa o contador do vetor para acessar a posição correta do vetor
                   saldo[contaTransferida] += transferencia; //Atribui o valor para a conta que receberá a transferência
                   
@@ -141,6 +152,7 @@ public class Banco {
             if (j < 10) {
               i++;
               j++;
+
               conta[i] = j;
               essaConta = conta[i]; // Define uma variável para a conta que será criada
 
@@ -165,8 +177,8 @@ public class Banco {
 
               System.out.print("Digite o número da conta: ");
               trocarConta = sc.nextInt();
-              trocarConta -= 1;// A conta que será acessada é a conta que está na posição do vetor menos 1
-
+              trocarConta --; // Decrementa o contador do vetor para acessar a posição correta do vetor conta
+              
               if (contains(conta, trocarConta)) { // Verifica se a conta existe
                 essaConta = conta[trocarConta]; //Define a variavel essaConta com a conta que será acessada
                 saldo[trocarConta] = esseSaldo; // Define uma variável esseSaldo para o saldo da conta que será acessada
@@ -189,8 +201,7 @@ public class Banco {
       System.out.println("-----> Obrigado por utilizar o Banco Trilegal!"); // Aviso de saída do programa
 
     } else {
-      System.out.println("\n-----> Ocorreu um erro ao criar sua conta!"); // Aviso de erro ao criar conta
-
+      System.out.println("\n-----> Obrigado por utilizar nosso banco!"); // Aviso de erro ao criar conta
     }
 
     sc.close();
